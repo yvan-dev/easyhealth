@@ -1,0 +1,7 @@
+{
+  "name": "EasyHealth",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
