@@ -1,0 +1,68 @@
+.logo_text {
+    margin-top: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 29.3833px;
+    line-height: 34px;
+    color: #3A6898;
+    transform: rotate(-1.36deg);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.doctors_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    box-sizing: border-box;
+    width: 95%;
+    height: 75%;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 150, 106, 0.15);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    padding: 10px;
+}
+
+.additionnal_info {
+    display: flex;
+    flex-direction: column;
+    width: 85%;
+    height: 30%;
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 200;
+    font-size: 20px;
+}
+
+.additionnal_info span {
+    font-weight: 550;
+}
+
+.additionnal_info a {
+    color: #3A6898;
+}
+
+.rdv {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 138px;
+    height: 36px;
+    background: #799A4D;
+    border-radius: 999px;
+}
+
+.rdv .link {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 100%;
+    color: #FFFFFF;
+    text-decoration: none;
+}

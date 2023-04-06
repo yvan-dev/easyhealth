@@ -1,0 +1,62 @@
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo_text {
+    margin-top: 20px;
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 29.3833px;
+        line-height: 34px;
+        color: #3A6898;
+        transform: rotate(-1.36deg);
+flex: none;
+        order: 0;
+        flex-grow: 0;
+}
+
+.doctors_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+        width: 95%;
+        height: 85%;
+        background: #FFFFFF;
+        border: 1px solid rgba(0, 150, 106, 0.15);
+        border-radius: 12px;
+        margin-bottom: 10px;
+        padding: 10px;
+}
+
+ion-toolbar {
+    --ion-color-primary: #78994e;
+    --background: #78994e;
+    --border-width: 0px 0px 0px 0px;
+    --border-style: none;
+}
+
+.ion_list {
+    display: flex;
+        flex-direction: column;
+        align-items: center;
+}
+
+/* Scoped components require higher specificity to customize */
+ion-searchbar.custom {
+    width: 98%;
+    --border-radius: 10px;
+}
+
+ion-searchbar.ios.custom {
+    --cancel-button-color: #19422d;
+}
+
+ion-searchbar.md.custom {
+    --cancel-button-color: #fff;
+}

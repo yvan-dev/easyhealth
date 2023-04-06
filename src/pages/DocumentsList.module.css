@@ -1,0 +1,46 @@
+.logo_text {
+    margin-top: 20px;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 29.3833px;
+    line-height: 34px;
+    color: #3A6898;
+    transform: rotate(-1.36deg);
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.documents_box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-sizing: border-box;
+    width: 95%;
+    height: 80%;
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 150, 106, 0.15);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    padding: 30px;
+}
+
+.documents_box .title {
+    font-family: 'M PLUS 1';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    color: #3A6898;
+}
+
+.documents_box .doc {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 90%;
+    height: 80%;
+}

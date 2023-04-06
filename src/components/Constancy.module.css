@@ -1,0 +1,49 @@
+.container {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 9px 24px 0px;
+    gap: 10px;
+    width: 30%;
+    height: 100%;
+    border: 1px solid rgba(97, 154, 77, 0.5);
+    border-radius: 6px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    overflow: scroll;
+}
+
+.period {
+    font-family: 'M PLUS 1';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 29px;
+    color: #27549E;
+}
+
+.constancy {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.constancy .title {
+    font-family: 'M PLUS 1';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 29px;
+    color: #3A6898;
+}
+
+.constancy .value {
+    font-family: 'M PLUS 1';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 35px;
+    color: #000000;
+}

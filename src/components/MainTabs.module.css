@@ -1,0 +1,25 @@
+.home {
+        display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 10.494px;
+            gap: 6.3px;
+
+            width: 94.27px;
+            height: 45.99px;
+
+            background: #3A6898;
+            border-radius: 10.494px;
+
+            /* Inside auto layout */
+
+            flex: none;
+            order: 0;
+            flex-grow: 0;
+
+            font-family: 'Roboto';
+                font-style: normal;
+                font-weight: 400;
+                font-size: 16.7904px;
+                line-height: 24px;
+}
