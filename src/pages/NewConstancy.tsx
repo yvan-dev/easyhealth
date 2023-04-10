@@ -2,7 +2,7 @@ import { IonPage, IonHeader, IonToolbar, IonButtons, IonBackButton, IonContent, 
 import css from './NewConstancy.module.css';
 import { timeOutline } from 'ionicons/icons';
 
-const NewConstancy = () => {
+const NewConstancy = (props) => {
 	const date = new Date();
 	const today = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear();
 	return (
@@ -28,7 +28,7 @@ const NewConstancy = () => {
 								<img src={require('../images/diabete.png')} />
 							</div>
 							<div className={css.right}>
-								<div className={css.title}>Diabète</div>
+								<div className={css.title}>{props.patho}</div>
 								<div className={css.text}>
 									<IonIcon aria-hidden='true' icon={timeOutline} />
 									<span>&nbsp;8 heures left</span>

@@ -1,7 +1,7 @@
 import { IonTabs, IonRouterOutlet, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { triangle, ellipse, square, home, calendarClearOutline, folderOpenOutline, personOutline, homeOutline } from 'ionicons/icons';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Route, Redirect } from 'react-router';
 import Login from '../pages/Login';
 import Tab2 from '../pages/Tab2';
@@ -21,35 +21,36 @@ import Rdv from '../pages/Rdv';
 import RdvConfirm from '../pages/RdvConfirm';
 import RdvSuccess from '../pages/RdvSuccess';
 import RdvManagement from '../pages/RdvManagement';
+import { Storage } from '@ionic/storage';
+import { useStorage } from '../hooks/useStorage';
 
 const MainsTabs = () => {
+
+	const { data } = useStorage('userEmail');
+
 	return (
 		<IonTabs>
 			<IonRouterOutlet>
 				<Route exact path='/tabs/Home'>
 					<Home />
 				</Route>
-				<Route path='/tabs/home/constanciesList'>
-					<ConstanciesList />
-				</Route>
-				<Route path='/tabs/home/newConstancy'>
-					<NewConstancy />
-				</Route>
+				<Route path='/tabs/home/constanciesList/:patho' render={(props) => <ConstanciesList patho={props.match.params.patho}/>} />
+				<Route path='/tabs/home/newConstancy/:patho' render={(props) => <NewConstancy patho={props.match.params.patho}/>} />
 				<Route path='/tabs/home/rdvManagement'>
 					<RdvManagement />
 				</Route>
 				<Route exact path='/tabs/doctors_list'>
 					<DoctorList />
 				</Route>
-				<Route exact path='/tabs/doctors_list/doctor_details/:id' render={(props) => <DoctorDetails id={props.match.params.id} />} />
-				<Route exact path='/tabs/doctors_list/doctor_details/:id/rdv'>
+				<Route exact path='/tabs/doctors_list/doctor_details/:email' render={(props) => <DoctorDetails email={props.match.params.email} />} />
+				<Route exact path='/tabs/doctors_list/doctor_details/:email/rdv'>
 					<Rdv />
 				</Route>
 				<Route exact path='/tabs/doctors_list/doctor_details/:id/rdv/confirm'>
 					<RdvConfirm />
 				</Route>
 				<Route path='/tabs/doctors_list/doctor_details/:id/rdv/confirm/success'>
-					<RdvSuccess/>
+					<RdvSuccess />
 				</Route>
 				<Route exact path='/tabs/documents'>
 					<Documents />

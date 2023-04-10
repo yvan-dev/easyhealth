@@ -25,9 +25,15 @@ export function useStorage(KEY:string) {
             setData(value);
     }
 
+    //remove item
+    const removeItem = async (key: string) => {
+        await store?.remove(key);
+    }
+
     return {
         data,
-        setItem
+        setItem,
+        removeItem
     }
 
 }

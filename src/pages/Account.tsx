@@ -1,9 +1,31 @@
 import { IonContent, IonPage } from '@ionic/react';
 import css from './Account.module.css';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useStorage } from '../hooks/useStorage';
+import rest from '../API/rest';
+import { calendarNumberSharp } from 'ionicons/icons';
 
 const Account = () => {
-	const user = { name: 'John Doe', birthday: '02/05/1960', address: '38 rue Molière, 94200 Ivry-sur-seine', email: 'upchh@example.com', password: '12', doctor: 'Jean Dupont' };
+	const user = { name: 'John Doe', birthday: '02/05/1960', address: '38 rue Molière, 94200 Ivry-sur-seine', email: 'upchh@example.com', password: '12', doctor: 'Benoit Jacquart' };
+	const [patient, setPatient] = useState(null);
+	const { data, removeItem } = useStorage('userEmail');
+
+	useEffect(() => {
+		const getUser = async () => {
+			const response = await rest.getUser(data);
+			const patient = await response.json();
+			setPatient(patient);
+		};
+		data != undefined && getUser();
+	}, [data])
+
+
+	const logout = async () => {
+		await removeItem('userEmail');
+		window.location.href = '/login';
+	};
+
 	return (
 		<IonPage>
 			<IonContent>
@@ -18,7 +40,7 @@ const Account = () => {
 					<div className={css.info_container}>
 						<div className={css.header}>
 							<img src={require('../images/default_avatar.png')} />
-							{user.name}
+							{`${patient?.prenom} ${patient?.nom}`}
 						</div>
 						<div className={css.info}>
 							<div>
@@ -28,7 +50,7 @@ const Account = () => {
 								<span className={css.title}>Adresse : </span> {user.address}
 							</div>
 							<div>
-								<span className={css.title}>Email : </span> {user.email}
+								<span className={css.title}>Email : </span> {patient?.adresseMail}
 							</div>
 							<div>
 								<span className={css.title}>Mot de passe : </span> {'******'}
@@ -38,9 +60,9 @@ const Account = () => {
 							</div>
 						</div>
 					</div>
-					<Link to='/login' className={css.logout}>
+					<div onClick={logout} className={css.logout}>
 						Se déconnecter
-					</Link>
+					</div>
 					<Link to='/tabs/account/contact' className={css.contact_us}>
 						Nous contacter
 					</Link>

@@ -2,14 +2,27 @@ import { Link } from 'react-router-dom';
 import DoctorOverview from '../components/DoctorOverview';
 import css from './DoctorList.module.css';
 import { IonBackButton, IonButtons, IonContent, IonHeader, IonItem, IonList, IonPage, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
+import { useEffect, useState } from 'react';
+import rest from '../API/rest';
 
 const DoctorList = () => {
-	const doctors = [
-		{ id: 1, name: 'Dr. Jean Dupont', specialty: 'Médecin généraliste', photo: '../images/doctor1.png' },
-		{ id: 2, name: 'Dr. Marie Dupont', specialty: 'Médecin généraliste', photo: '../images/doctor2.png' },
-        { id: 3, name: 'Dr. Benoit Jacquart', specialty: 'Dermatologue', photo: null },
-        { id: 4, name: 'Dr. Jean Dupont', specialty: 'Médecin généraliste', photo: '../images/doctor1.png' },
-	];
+	// const doctors = [
+	// 	{ id: 1, name: 'Dr. Jean Dupont', specialty: 'Médecin généraliste', photo: '../images/doctor1.png' },
+	// 	{ id: 2, name: 'Dr. Marie Dupont', specialty: 'Médecin généraliste', photo: '../images/doctor2.png' },
+    //     { id: 3, name: 'Dr. Benoit Jacquart', specialty: 'Dermatologue', photo: null },
+    //     { id: 4, name: 'Dr. Jean Dupont', specialty: 'Médecin généraliste', photo: '../images/doctor1.png' },
+	// ];
+	const [doctors, setDoctors] = useState([]);
+
+	useEffect(() => {
+		const getDoctors = async () => {
+			const response = await rest.getDoctors();
+			const doctors = await response.json();
+			setDoctors(doctors);
+		};
+		getDoctors();
+	}, [])
+
 
 	return (
 		<IonPage>
@@ -31,11 +44,11 @@ const DoctorList = () => {
 					<div className={css.doctors_box}>
 						<IonContent>
 							<IonList lines='none' className={css.ion_list}>
-								{doctors.map((doctor, key) => {
+								{doctors?.map((doctor, key) => {
 									return (
-										<Link to={`/tabs/doctors_list/doctor_details/${doctor.id}`} key={key} style={{textDecoration: 'none'}}>
+										<Link to={`/tabs/doctors_list/doctor_details/${doctor.adresseMail}`} key={key} style={{textDecoration: 'none'}}>
 											<IonItem>
-												<DoctorOverview name={doctor.name} specialty={doctor.specialty} photo={doctor.photo} />
+												<DoctorOverview name={doctor.nom} specialty={doctor.specialite} photo={doctor.photoProfil} />
 											</IonItem>
 										</Link>
 									);

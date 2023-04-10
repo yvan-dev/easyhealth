@@ -30,21 +30,25 @@ import Inscription from './pages/Inscription';
 import MainTabs from './components/MainTabs';
 import './App.css';
 import DoctorDetails from './pages/DoctorDetails';
+import { Storage } from '@ionic/storage';
+import { useEffect } from 'react';
 
 setupIonicReact();
 StatusBar.setBackgroundColor({ color: '#70935a' });
 
-const App: React.FC = () => (
-	<IonApp>
-		<IonReactRouter>
-			<IonRouterOutlet>
-				<Route exact path='/login' component={Login} />
-				<Redirect exact from='/' to='/login' />
-				<Route exact path='/inscription' component={Inscription} />
-				<Route path='/tabs' component={MainTabs} />
-			</IonRouterOutlet>
-		</IonReactRouter>
-	</IonApp>
-);
+const App: React.FC = () => {
+	return (
+		<IonApp>
+			<IonReactRouter>
+				<IonRouterOutlet>
+					<Route exact path='/login' component={Login} />
+					<Redirect exact from='/' to='/login' />
+					<Route exact path='/inscription' component={Inscription} />
+					<Route path='/tabs' component={MainTabs} />
+				</IonRouterOutlet>
+			</IonReactRouter>
+		</IonApp>
+	);
+};
 
 export default App;

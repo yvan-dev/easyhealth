@@ -7,8 +7,8 @@ const Constancy = (props) => {
 			{props.constancies.map((constancy, key) => {
 				return (
 					<div key={key} className={css.constancy}>
-						<div className={css.title}>{constancy.title}</div>
-						<div className={css.value}>{constancy.value}</div>
+						<div className={css.title}>{constancy.pathologie}</div>
+						<div className={css.value}>{constancy.valeur}&nbsp;{constancy.unite}</div>
 					</div>
 				);
 			})}

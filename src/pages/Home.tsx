@@ -10,10 +10,29 @@ import { timeOutline } from 'ionicons/icons';
 import css from './Home.module.css';
 import AddConstancy from '../components/AddConstancy';
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useStorage } from '../hooks/useStorage';
+import rest from '../API/rest'
 
 const Home: React.FC = () => {
-	const pathos = ['Diabète', 'Patho2', 'Patho3', 'Patho4', 'Patho5', 'Patho6', 'Patho7', 'Patho8', 'Patho9', 'Patho10'];
-	let pathoSelected = true;
+	const [pathos, setPathos] = useState([]);
+	const [pathoSelected, setPathoSelected] = useState();
+	const { data } = useStorage('userEmail');
+
+	useEffect(() => {
+		const getPathos = async (email: string) => {
+			const response = await rest.getPathoUser(email);
+			const pathos = await response.json();
+			if (response.status === 200) setPathos(pathos);
+		}
+		data !== undefined && getPathos(data);
+
+	}, [data])
+
+	useEffect(() => {
+		setPathoSelected(pathos[0]?.id);
+	}, [pathos])
+
 	return (
 		<IonPage>
 			<IonContent fullscreen>
@@ -30,7 +49,7 @@ const Home: React.FC = () => {
 							className={css.slider}
 						>
 							<SwiperSlide className={css.slider}>
-								<Link to={`/tabs/home/constanciesList`} className={css.link}>
+								<Link to={`/tabs/home/constanciesList/${pathos.find(patho => patho.id === pathoSelected)?.libelle}`} className={css.link}>
 									<div className={css.image_constancy}></div>
 									<div className={css.text}>
 										<p>Mes mesures</p>
@@ -53,18 +72,17 @@ const Home: React.FC = () => {
 					</div>
 					<div className={css.patho_list}>
 						{pathos.map((patho, key) => {
-							patho === 'Patho2' && (pathoSelected = false);
 							return (
-								<div key={key} className={pathoSelected ? css.patho_selected : css.patho}>
-									<div className={css.text} style={{ color: pathoSelected ? '#000000' : '#F4F4F4' }}>
-										{patho}
+								<div key={key} className={pathoSelected === patho.id ? css.patho_selected : css.patho}>
+									<div className={css.text} onClick={() => setPathoSelected(patho.id)} style={{ color: pathoSelected === patho.id ? '#000000' : '#F4F4F4' }}>
+										{patho.libelle}
 									</div>
 								</div>
 							);
 						})}
 					</div>
 					<div className={css.add_constancy}>
-						{<AddConstancy imageClassName={css.image} remainingTime={8} progress={100} />}
+						{<AddConstancy patho={pathos.find(patho => patho.id === pathoSelected)} imageClassName={css.image} remainingTime={8} progress={100} />}
 					</div>
 				</div>
 			</IonContent>

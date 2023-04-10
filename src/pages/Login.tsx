@@ -11,7 +11,7 @@ const Login = () => {
 	const [password, setPassword] = useState('');
 	const [error, setError] = useState(false);
 	const [loading, setLoading] = useState(false);
-	const { data, setItem } = useStorage('userEmail');
+	const { setItem } = useStorage('userEmail');
 
 	const inputLoginChange = (event) => {
 		setLogin(event.target.value);

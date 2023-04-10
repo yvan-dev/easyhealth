@@ -9,7 +9,7 @@ const AddConstancy = (props) => {
 		<>
 			<div className={props.imageClassName}></div>
 			<div className={css.right}>
-				<Link to={`/tabs/home/newConstancy`} className={css.link}>
+				<Link to={`/tabs/home/newConstancy/${props.patho?.libelle}`} className={css.link}>
 				<div className={css.title}>Ajouter une mesure ?</div>
 				<div className={css.remain_time}>
 					<IonIcon aria-hidden='true' icon={timeOutline} />

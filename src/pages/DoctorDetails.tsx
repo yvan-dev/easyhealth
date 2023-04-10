@@ -2,10 +2,21 @@ import { IonBackButton, IonButtons, IonContent, IonHeader, IonPage, IonToolbar }
 import DoctorOverview from '../components/DoctorOverview';
 import css from './DoctorDetails.module.css';
 import { Link } from 'react-router-dom';
+import rest from '../API/rest';
+import { useEffect, useState } from 'react';
 
 const DoctorDetails = (props) => {
-	// const { id } = props.match.params;
-	const doctor = { name: 'Dr. Jean Dupont', specialty: 'Médecin généraliste', photo: '../images/doctor1.png' };
+	const [doctor, setDoctor] = useState(null);
+
+	useEffect(() => {
+		const getDoctor = async () => {
+			const response = await rest.getDoctor(props.email);
+			const doctor = await response.json();
+			setDoctor(doctor);
+		};
+		getDoctor();
+	}, []);
+
 	return (
 		<IonPage>
 			<IonHeader>
@@ -24,7 +35,7 @@ const DoctorDetails = (props) => {
 						</span>
 					</div>
 					<div className={css.doctors_box}>
-						<DoctorOverview name={doctor.name} specialty={doctor.specialty} photo={doctor.photo} />
+						<DoctorOverview name={doctor?.nom} specialty={doctor?.specialite} photo={doctor?.photoProfil} />
 						<div className={css.additionnal_info}>
 							<div>
 								<span>Adresse : </span>19 Pl. des Muguets, 92000 Nanterre <br />
@@ -32,7 +43,7 @@ const DoctorDetails = (props) => {
 							</div>
 							<div>
 								<span>Téléphone : </span>
-								<a href='tel:+33134442580'>01 34 44 25 80</a>
+								<a href={`tel:+${doctor?.numeroTelephone}`}>{doctor?.numeroTelephone}</a>
 							</div>
 						</div>
 						<div className={css.rdv}>
