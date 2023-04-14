@@ -57,7 +57,7 @@ const Login = () => {
 						</IonItem>
 						<IonItem fill='outline'>
 							<IonLabel position='floating'>Mot de passe</IonLabel>
-							<IonInput onIonChange={inputPasswordChange} placeholder='Enter your password'></IonInput>
+							<IonInput type='password' onIonChange={inputPasswordChange} placeholder='Enter your password'></IonInput>
 						</IonItem>
 					</div>
 					<div className={css.btns}>

@@ -57,7 +57,7 @@ const ConstanciesList = (props) => {
 						</div>
 						<div className={css.body}>
 							{periods.map((period, key) => {
-								return <Constancy period={period} key={key} constancies={constancies?.filter((constancy) => constancy.periode === period)} />;
+								return <Constancy period={period} key={key} constancies={constancies?.filter((constancy) => constancy.periode.toLowerCase() === period.toLowerCase())} />;
 							})}
 						</div>
 						<button>Modifier</button>

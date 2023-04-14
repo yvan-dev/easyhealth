@@ -48,7 +48,7 @@ const DoctorList = () => {
 									return (
 										<Link to={`/tabs/doctors_list/doctor_details/${doctor.adresseMail}`} key={key} style={{textDecoration: 'none'}}>
 											<IonItem>
-												<DoctorOverview name={doctor.nom} specialty={doctor.specialite} photo={doctor.photoProfil} />
+												<DoctorOverview name={'Dr. ' + doctor.nom} specialty={doctor.specialite} photo={doctor.photoProfil} />
 											</IonItem>
 										</Link>
 									);

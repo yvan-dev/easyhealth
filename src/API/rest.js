@@ -1,4 +1,4 @@
-const apiUrl = 'http://localhost:8080'
+const apiUrl = 'https://yvandev.fr/easyHealth';
 const role = 'PATIENT'
 
 const rest = {
@@ -46,6 +46,17 @@ const rest = {
             method: 'GET',
         }
         return fetch(apiUrl + '/mesure/mesuresPatientAvecPathalogie/' + userMail + `/${patho}/${date}/${date}`, requestOptions);
+    },
+
+    sendConstancy (data, suivi, userEmail) {
+        let headers = new Headers()
+        headers.append('Content-Type', 'application/json')
+        const requestOptions = {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(data)
+        }
+        return fetch(apiUrl + '/mesure/' + suivi + '?mailPatient=' + userEmail, requestOptions);
     }
 }
 

@@ -7,7 +7,7 @@ const DoctorOverview = (props) => {
 		<div className={css.container}>
 			<span className={css.name}>{props.name}</span>
 			<div className={css.photo}>
-				<img id='img' src={imageUrl} alt={props.name} />
+				<img src={imageUrl} alt={props.name} />
 			</div>
 			<span className={css.specialty}>{props.specialty}</span>
 		</div>

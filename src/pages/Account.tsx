@@ -9,12 +9,17 @@ import { calendarNumberSharp } from 'ionicons/icons';
 const Account = () => {
 	const user = { name: 'John Doe', birthday: '02/05/1960', address: '38 rue Molière, 94200 Ivry-sur-seine', email: 'upchh@example.com', password: '12', doctor: 'Benoit Jacquart' };
 	const [patient, setPatient] = useState(null);
+	const [image, setImage] = useState('');
+	const [medecin, setMedecin] = useState(null);
 	const { data, removeItem } = useStorage('userEmail');
 
 	useEffect(() => {
 		const getUser = async () => {
 			const response = await rest.getUser(data);
 			const patient = await response.json();
+			const consultations = patient.consultations;
+			consultations.length > 0 && setMedecin(consultations[0].medecinNom);
+			setImage(patient.photoProfil);
 			setPatient(patient);
 		};
 		data != undefined && getUser();
@@ -39,7 +44,7 @@ const Account = () => {
 					</div>
 					<div className={css.info_container}>
 						<div className={css.header}>
-							<img src={require('../images/default_avatar.png')} />
+							<img src={image != '' ? `data:image/png;base64,${image}` : '../images/default_avatar.png'} />
 							{`${patient?.prenom} ${patient?.nom}`}
 						</div>
 						<div className={css.info}>
@@ -56,7 +61,7 @@ const Account = () => {
 								<span className={css.title}>Mot de passe : </span> {'******'}
 							</div>
 							<div>
-								<span className={css.title}>Médecin traitant : </span> {user.doctor}
+								<span className={css.title}>Médecin traitant : </span> {medecin !== null ? `Dr. ${medecin}` : 'Aucun médecin'}
 							</div>
 						</div>
 					</div>

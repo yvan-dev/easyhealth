@@ -35,7 +35,7 @@ const DoctorDetails = (props) => {
 						</span>
 					</div>
 					<div className={css.doctors_box}>
-						<DoctorOverview name={doctor?.nom} specialty={doctor?.specialite} photo={doctor?.photoProfil} />
+						<DoctorOverview name={'Dr. ' + doctor?.nom} specialty={doctor?.specialite} photo={doctor?.photoProfil} />
 						<div className={css.additionnal_info}>
 							<div>
 								<span>Adresse : </span>19 Pl. des Muguets, 92000 Nanterre <br />
